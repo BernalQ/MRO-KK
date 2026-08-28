@@ -386,7 +386,7 @@
     modalHero.innerHTML = '';
     modalIcon.hidden = false;
     modalIcon.innerHTML = ICON_PATHS[f.category]
-      ? `<svg viewBox="0 0 24 24" width="40" height="40">${ICON_PATHS[f.category].replace(/#FDFDFD/g, '#002B5C').replace(/rgba\(15,\s*23,\s*32,\s*0\.28\)/g, 'rgba(0,43,92,0.35)')}</svg>`
+      ? `<svg viewBox="0 0 24 24" width="48" height="48">${ICON_PATHS[f.category].replace(/#FDFDFD/g, '#CBA135').replace(/rgba\(15,\s*23,\s*32,\s*0\.28\)/g, 'rgba(203,161,53,0.35)')}</svg>`
       : '';
   }
 

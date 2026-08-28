@@ -397,7 +397,22 @@ main {
 
 .modal.modal-wide { max-width: 900px; }
 
-#modalOverlay .modal { max-width: 640px; }
+#modalOverlay .modal {
+  max-width: 820px;
+  background: linear-gradient(180deg, #0A0A0C, #151515);
+  border: 1px solid rgba(203, 161, 53, 0.35);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(203, 161, 53, 0.12);
+}
+
+#modalOverlay .modal-close {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(203, 161, 53, 0.55);
+  color: var(--tech-yellow);
+}
+
+#modalOverlay .modal-body h3 { color: var(--tech-yellow); }
+#modalOverlay .modal-specs { color: rgba(255, 255, 255, 0.85); }
+#modalOverlay .modal-specs::marker { color: var(--tech-yellow); }
 
 .modal-close {
   position: absolute;
@@ -416,10 +431,10 @@ main {
 .modal-icon { margin-bottom: 8px; }
 .modal-icon svg { display: block; }
 
-.modal-hero { border-radius: 10px; overflow: hidden; margin-bottom: 14px; box-shadow: var(--shadow-soft); }
+.modal-hero { border-radius: 10px; overflow: hidden; margin-bottom: 14px; box-shadow: var(--shadow-mid); }
 .modal-hero[hidden] { display: none; }
 .modal-hero svg { display: block; width: 100%; height: auto; }
-.modal-hero-photo { display: block; width: 100%; aspect-ratio: 16 / 9; height: auto; object-fit: cover; }
+.modal-hero-photo { display: block; width: 100%; aspect-ratio: 16 / 9; height: auto; max-height: 62vh; object-fit: cover; border-radius: 10px; }
 
 .modal-photo { max-width: 1000px; }
 .sat-photo-full { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 10px; margin-top: 10px; }
@@ -469,7 +484,8 @@ main {
 .render-gallery-caption span { display: block; font-size: 0.75rem; color: var(--text-dim); margin-top: 2px; }
 
 .modal-lightbox {
-  max-width: min(96vw, 1300px);
+  max-width: min(96vw, 1400px);
+  max-height: 94vh;
   background: #0A0A0C;
   border: 1px solid rgba(203, 161, 53, 0.55);
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(203, 161, 53, 0.12);
@@ -487,10 +503,11 @@ main {
   width: auto;
   height: auto;
   max-width: 100%;
-  max-height: 82vh;
+  max-height: 86vh;
   margin: 0 auto;
   border-radius: 10px;
   object-fit: contain;
+  background: #000;
 }
 
 .modal-phases { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
