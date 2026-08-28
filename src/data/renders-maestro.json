@@ -1,0 +1,26 @@
+[
+  {
+    "key": "VistaAerea",
+    "title": "Vista Aérea",
+    "description": "Vista aérea general del Centro MRO CUU y su disposición de pista, rodaje, hangares y zonas de apoyo.",
+    "path": "./src/assets/render-mro/maestro/VistaAerea.jpg"
+  },
+  {
+    "key": "FachadaHangares",
+    "title": "Fachada de Hangares",
+    "description": "Render de la fachada principal de los hangares Narrow Body y Wide Body sobre la plataforma.",
+    "path": "./src/assets/render-mro/maestro/FachadaHangares.jpg"
+  },
+  {
+    "key": "AccesoMRO",
+    "title": "Acceso al MRO",
+    "description": "Vista del acceso principal y vialidad de entrada al centro de mantenimiento.",
+    "path": "./src/assets/render-mro/maestro/AccesoMRO.jpg"
+  },
+  {
+    "key": "OperacionNocturna",
+    "title": "Operación Nocturna",
+    "description": "Render nocturno del centro MRO en operación, con iluminación de plataforma y hangares.",
+    "path": "./src/assets/render-mro/maestro/OperacionNocturna.jpg"
+  }
+]

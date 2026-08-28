@@ -1,0 +1,18 @@
+{
+  "Avionica": "./src/assets/render-mro/tecnicos/Avionica.png",
+  "Componentes": "./src/assets/render-mro/tecnicos/Componentes.png",
+  "CeldaPruebas": "./src/assets/render-mro/tecnicos/CeldaPruebas.png",
+  "Pintura": "./src/assets/render-mro/tecnicos/Pintura.png",
+  "PTF": "./src/assets/render-mro/tecnicos/PTF.png",
+  "CompuestosNDT": "./src/assets/render-mro/tecnicos/CompuestosNDT.png",
+  "ZonaAdministrativa": "./src/assets/render-mro/administrativos/ZonaAdministrativa.png",
+  "CentroCapacitacion": "./src/assets/render-mro/administrativos/CentroCapacitacion.png",
+  "HotelTecnico": "./src/assets/render-mro/administrativos/HotelTecnico.png",
+  "Estacionamiento": "./src/assets/render-mro/infraestructura/Estacionamiento.png",
+  "AlmacenLogistica": "./src/assets/render-mro/infraestructura/AlmacenLogistica.png",
+  "CFE10MVA": "./src/assets/render-mro/infraestructura/CFE10MVA.png",
+  "PlantaTratamiento": "./src/assets/render-mro/tecnicos/PlantaTratamiento.png",
+  "PlataformaICAO": "./src/assets/render-mro/infraestructura/PlataformaICAO.png",
+  "HangarNB": "./src/assets/render-mro/infraestructura/HangarNB.png",
+  "HangarWB": "./src/assets/render-mro/infraestructura/HangarWB.jpg"
+}
