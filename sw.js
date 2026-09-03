@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mro-cuu-v20';
+const CACHE_NAME = 'mro-cuu-v27';
 const ASSETS = [
   './',
   './index.html',
@@ -9,7 +9,7 @@ const ASSETS = [
   './icons/icon.svg',
   './assets/mro-lote.png',
   './assets/foto-satelital.png',
-  './assets/logo-kaizen.svg',
+  './assets/logo-kaizen-aerospace.jpg',
   './src/data/renders.json',
   './src/data/renders-maestro.json',
 ];

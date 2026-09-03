@@ -1,7 +1,7 @@
 {
-  "name": "MRO CUU — Centro de Mantenimiento Internacional",
+  "name": "MRO CUU — International Maintenance Center",
   "short_name": "MRO CUU",
-  "description": "Demo interactiva del Centro MRO Internacional de Chihuahua: mapa por fases y trackeo de certificaciones.",
+  "description": "Interactive demo of the Chihuahua International MRO Center: phase map and certification tracking.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",

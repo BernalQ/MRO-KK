@@ -1,26 +1,26 @@
 [
   {
     "key": "VistaAerea",
-    "title": "Vista Aérea",
-    "description": "Vista aérea general del Centro MRO CUU y su disposición de pista, rodaje, hangares y zonas de apoyo.",
+    "title": "Aerial View",
+    "description": "General aerial view of the MRO CUU Center showing the layout of the runway, taxiway, hangars and support areas.",
     "path": "./src/assets/render-mro/maestro/VistaAerea.jpg"
   },
   {
     "key": "FachadaHangares",
-    "title": "Fachada de Hangares",
-    "description": "Render de la fachada principal de los hangares Narrow Body y Wide Body sobre la plataforma.",
+    "title": "Hangar Facade",
+    "description": "Render of the main facade of the Narrow Body and Wide Body hangars on the platform.",
     "path": "./src/assets/render-mro/maestro/FachadaHangares.jpg"
   },
   {
     "key": "AccesoMRO",
-    "title": "Acceso al MRO",
-    "description": "Vista del acceso principal y vialidad de entrada al centro de mantenimiento.",
+    "title": "MRO Access",
+    "description": "View of the main entrance and access road to the maintenance center.",
     "path": "./src/assets/render-mro/maestro/AccesoMRO.jpg"
   },
   {
     "key": "OperacionNocturna",
-    "title": "Operación Nocturna",
-    "description": "Render nocturno del centro MRO en operación, con iluminación de plataforma y hangares.",
+    "title": "Night Operation",
+    "description": "Night render of the MRO center in operation, with platform and hangar lighting.",
     "path": "./src/assets/render-mro/maestro/OperacionNocturna.jpg"
   }
 ]

@@ -141,7 +141,7 @@
       btn.classList.toggle('active', activePhases.has(PHASES[i].id));
     });
 
-    phaseDescEl.textContent = 'Selecciona una o varias fases para iluminar sus áreas en el mapa (se pueden combinar), o haz clic en cualquier instalación para ver su ficha técnica.';
+    phaseDescEl.textContent = 'Select one or more phases to highlight their areas on the map (you can combine them), or click any facility to view its technical fact sheet.';
 
     const activePhaseList = PHASES.filter((p) => activePhases.has(p.id));
     phaseLegendPanelEl.innerHTML = '';
@@ -242,11 +242,11 @@
     almacen: 'AlmacenLogistica',
     agua: 'PlantaTratamiento',
     plataforma: 'PlataformaICAO',
-    h1: 'HangarNB',
-    h2: 'HangarNB',
-    h3: 'HangarWB',
-    h4: 'HangarWB',
-    h5: 'HangarWB',
+    h1: 'H1',
+    h2: 'H2',
+    h3: 'H3',
+    h4: 'H4',
+    h5: 'H5',
   };
   let renderImages = {};
   function loadRenderImages() {
@@ -284,7 +284,7 @@
         img.textContent = '';
         img.replaceWith(Object.assign(document.createElement('div'), {
           className: 'render-gallery-photo is-missing',
-          textContent: 'Render pendiente de cargar',
+          textContent: 'Render pending upload',
         }));
       });
       card.appendChild(img);
@@ -316,6 +316,30 @@
 
   // ---------- Map rendering ----------
   const Z_ORDER = { buffer: 0, pista: 1, rodaje: 1 };
+
+  // Divide un texto en (a lo más) dos renglones balanceados que quepan en maxWidth,
+  // usando el ancho real medido en el propio elemento <text> del SVG (ya insertado
+  // en el documento). Si ni siquiera dos renglones alcanzan, regresa el mejor esfuerzo.
+  function fitLabelLines(el, text, maxWidth) {
+    el.textContent = text;
+    if (el.getComputedTextLength() <= maxWidth) return [text];
+    const words = text.split(' ');
+    if (words.length < 2) return [text];
+    let bestSplit = Math.ceil(words.length / 2);
+    let bestScore = Infinity;
+    for (let i = 1; i < words.length; i++) {
+      const line1 = words.slice(0, i).join(' ');
+      const line2 = words.slice(i).join(' ');
+      el.textContent = line1;
+      const w1 = el.getComputedTextLength();
+      el.textContent = line2;
+      const w2 = el.getComputedTextLength();
+      const score = Math.max(w1, w2);
+      if (score < bestScore) { bestScore = score; bestSplit = i; }
+    }
+    el.textContent = '';
+    return [words.slice(0, bestSplit).join(' '), words.slice(bestSplit).join(' ')];
+  }
 
   function renderMap() {
     buildIconDefs();
@@ -354,15 +378,19 @@
         g.appendChild(use);
       }
 
+      g.addEventListener('click', () => openModal(f));
+      svg.appendChild(g); // se conecta al documento antes de medir el texto del label
+
       const label = document.createElementNS(SVG_NS, 'text');
       let labelX = f.rect.x + f.rect.w / 2;
       let labelY = f.rect.y + f.rect.h - 12;
       let rotate = null;
-      let labelClass = 'zone-label';
+      const isRotated = f.category !== 'buffer' && f.rect.h > f.rect.w * 2;
 
       if (f.category === 'buffer') {
         labelY = f.rect.y + f.rect.h - 14;
-      } else if (f.category === 'pista' || f.category === 'rodaje') {
+      } else if (isRotated) {
+        // Cajas altas y angostas (pista, rodaje, plataforma ICAO): etiqueta vertical centrada
         labelY = f.rect.y + f.rect.h / 2;
         rotate = `rotate(-90 ${labelX} ${labelY})`;
       }
@@ -370,13 +398,30 @@
       label.setAttribute('x', labelX);
       label.setAttribute('y', labelY);
       label.setAttribute('text-anchor', 'middle');
-      label.setAttribute('class', labelClass);
+      label.setAttribute('class', isRotated ? 'zone-label zone-label-axis' : 'zone-label');
       if (rotate) label.setAttribute('transform', rotate);
-      label.textContent = f.mapLabel;
       g.appendChild(label);
 
-      g.addEventListener('click', () => openModal(f));
-      svg.appendChild(g);
+      if (f.category === 'buffer' || isRotated) {
+        // Suficiente espacio a lo largo del eje del box: no hace falta partir el texto.
+        label.textContent = f.mapLabel;
+      } else {
+        const maxWidth = f.rect.w - 16;
+        const lines = fitLabelLines(label, f.mapLabel, maxWidth);
+        if (lines.length === 1) {
+          label.textContent = lines[0];
+        } else {
+          const lineHeight = 13;
+          label.setAttribute('y', labelY - lineHeight);
+          lines.forEach((line, i) => {
+            const tspan = document.createElementNS(SVG_NS, 'tspan');
+            tspan.setAttribute('x', labelX);
+            tspan.setAttribute('dy', i === 0 ? 0 : lineHeight);
+            tspan.textContent = line;
+            label.appendChild(tspan);
+          });
+        }
+      }
     });
   }
 
@@ -433,7 +478,7 @@
       const chip = document.createElement('span');
       chip.className = 'phase-chip';
       chip.style.background = '#4C8C6B';
-      chip.textContent = 'Todas las fases';
+      chip.textContent = 'All phases';
       modalPhases.appendChild(chip);
     }
     modalTitle.textContent = f.name;
@@ -505,7 +550,7 @@
   });
 
   // ---------- Certification tracker ----------
-  const STATUS_CYCLE = ['Pendiente', 'En proceso', 'Obtenido'];
+  const STATUS_CYCLE = ['Pending', 'In Progress', 'Obtained'];
   const STORAGE_KEY = 'mro-cuu-cert-status';
 
   function loadStatuses() {
@@ -522,7 +567,7 @@
 
   function computeWindow(phasesArr) {
     const ranges = phasesArr.map((id) => PHASES.find((p) => p.id === id)).filter(Boolean);
-    if (!ranges.length) return 'N/D';
+    if (!ranges.length) return 'N/A';
     const start = ranges[0].start;
     const end = ranges[ranges.length - 1].end;
     return `${start} – ${end}`;
@@ -570,11 +615,11 @@
       const statusBtn = document.createElement('button');
       statusBtn.type = 'button';
       statusBtn.className = 'status-btn';
-      const currentStatus = statuses[cert.id] || 'Pendiente';
+      const currentStatus = statuses[cert.id] || 'Pending';
       statusBtn.dataset.status = currentStatus;
       statusBtn.textContent = currentStatus;
       statusBtn.addEventListener('click', () => {
-        const cur = statuses[cert.id] || 'Pendiente';
+        const cur = statuses[cert.id] || 'Pending';
         const next = STATUS_CYCLE[(STATUS_CYCLE.indexOf(cur) + 1) % STATUS_CYCLE.length];
         statuses[cert.id] = next;
         saveStatuses(statuses);
