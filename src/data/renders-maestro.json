@@ -22,5 +22,11 @@
     "title": "Night Operation",
     "description": "Night render of the MRO center in operation, with platform and hangar lighting.",
     "path": "./src/assets/render-mro/maestro/OperacionNocturna.jpg"
+  },
+  {
+    "key": "OperacionNocturna2",
+    "title": "Night Operation 2",
+    "description": "Additional night render of the MRO center in operation, showing the runway lighting and hangar row.",
+    "path": "./src/assets/render-mro/maestro/OperacionNocturna2.jpg"
   }
 ]
