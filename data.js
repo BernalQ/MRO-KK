@@ -1,5 +1,5 @@
 // Data for the CUU International MRO Center — demo PWA
-// Map coordinates in a schematic 1300x1030 viewBox (not georeferenced)
+// Map coordinates in a schematic 1300x1240 viewBox (not georeferenced)
 // Layout: runway all the way on the left · taxiway to its right ·
 // MRO CUU Platform strip next to the taxiway · hangars H1→H5 to the right of
 // the platform (north to south) · administrative/technical/infrastructure grid
@@ -7,7 +7,7 @@
 
 const PHASES = [
   { id: 'F1', label: 'Phase 1', color: '#3A5F7D', start: '2026 Q3', end: '2027 Q4',
-    desc: 'Operational kickoff: NB Hangar, administration, bonded warehouse, substation, parking.' },
+    desc: 'Operational kickoff: NB Hangar, administration, bonded warehouse, substation, parking, water treatment plant.' },
   { id: 'F2', label: 'Phase 2', color: '#4C8C6B', start: '2027 Q3', end: '2028 Q4',
     desc: 'NB expansion + avionics and components shops + training center.' },
   { id: 'F3', label: 'Phase 3', color: '#7C5CBF', start: '2028 Q3', end: '2029 Q4',
@@ -33,7 +33,7 @@ const CATEGORY_META = {
   'subestacion':    { color: '#D6A428' },
   'estacionamiento':{ color: '#6B7280' },
   'celda':          { color: '#B84A3E' },
-  'ptf':            { color: '#B0568A' },
+  'ptf':            { color: '#2C4A62' },
   'buffer':         { color: '#A8C3A0' },
 };
 
@@ -41,7 +41,7 @@ const FACILITIES = [
   {
     id: 'buffer', mapLabel: 'Environmental Buffer / Reserve', name: 'Environmental Buffer / Reserve',
     category: 'buffer', phases: [], area: '210.9 ha perimeter',
-    rect: { x: 15, y: 10, w: 1270, h: 995 },
+    rect: { x: 15, y: 10, w: 1270, h: 1205 },
     specs: [
       'Perimeter environmental buffer zone',
       'Preservation of native flora and fauna on site',
@@ -96,7 +96,7 @@ const FACILITIES = [
   {
     id: 'plataforma', mapLabel: 'MRO CUU Platform', name: 'ICAO Code E/F Platform',
     category: 'plataforma', phases: ['F3'], area: 'N/A',
-    rect: { x: 220, y: 30, w: 70, h: 935 },
+    rect: { x: 220, y: 30, w: 70, h: 1145 },
     specs: [
       'Taxi and remote aircraft parking platform',
       'Designed for ICAO Code E/F category aircraft',
@@ -106,7 +106,7 @@ const FACILITIES = [
 
   // ---------- Hangars H1 → H5, north to south, right of the MRO CUU Platform ----------
   {
-    id: 'h1', mapLabel: 'H1 · NB', name: 'H1 — NB/Helicopter Hangar (Phase 1)',
+    id: 'h1', mapLabel: 'H1 - Narrow Body', name: 'H1 - Narrow Body',
     category: 'hangar-nb', phases: ['F1'], area: '10,000 m²',
     rect: { x: 300, y: 30, w: 300, h: 125 },
     specs: [
@@ -122,7 +122,7 @@ const FACILITIES = [
     ],
   },
   {
-    id: 'h2', mapLabel: 'H2 · NB', name: 'H2 — NB/Helicopter Hangar (Phase 2)',
+    id: 'h2', mapLabel: 'H2 - Narrow Body', name: 'H2 - Narrow Body',
     category: 'hangar-nb', phases: ['F2'], area: '12,000 m²',
     rect: { x: 300, y: 200, w: 300, h: 135 },
     specs: [
@@ -231,7 +231,7 @@ const FACILITIES = [
   },
   {
     id: 'agua', mapLabel: 'Water Treatment Plant', name: 'Water Treatment Plant',
-    category: 'planta', phases: ['F3'], area: 'N/A',
+    category: 'planta', phases: ['F1'], area: 'N/A',
     rect: { x: 850, y: 522, w: 140, h: 70 },
     specs: [
       'Industrial wastewater treatment',
@@ -242,9 +242,9 @@ const FACILITIES = [
   {
     id: 'celda', mapLabel: 'Engine Test Cell', name: 'Engine Test Cell',
     category: 'celda', phases: ['F3', 'F4', 'F5'], area: 'N/A',
-    rect: { x: 650, y: 891, w: 140, h: 70 },
+    rect: { x: 650, y: 1010, w: 140, h: 70 },
     specs: [
-      'Located between hangars H4 and H5',
+      'Located at the bottom of the site, to the right of the PTF/Conversion platform',
       'Static test cell for turbofan engines',
       'Perimeter acoustic attenuation',
       'OEM-certified test bench instrumentation',
@@ -253,7 +253,7 @@ const FACILITIES = [
   {
     id: 'ptf', mapLabel: 'PTF / Conversion', name: 'PTF/Conversion Platform',
     category: 'ptf', phases: ['F4'], area: 'N/A',
-    rect: { x: 650, y: 522, w: 140, h: 70 },
+    rect: { x: 300, y: 1010, w: 300, h: 165 },
     specs: [
       'Located immediately south of Hangar H5',
       'Reinforced platform for passenger-to-freighter (P2F) conversion operations',
@@ -263,7 +263,7 @@ const FACILITIES = [
   {
     id: 'pintura', mapLabel: 'Paint Shop', name: 'Paint Shop',
     category: 'taller', phases: ['F5'], area: 'N/A',
-    rect: { x: 650, y: 645, w: 140, h: 70 },
+    rect: { x: 650, y: 645, w: 300, h: 125 },
     specs: [
       'Aeronautical paint booth with extraction and filtering',
       'Pressure-controlled ventilation',
@@ -274,7 +274,7 @@ const FACILITIES = [
   {
     id: 'compuestos', mapLabel: 'Composites/NDT', name: 'Composites/NDT Shop',
     category: 'taller', phases: ['F5'], area: 'N/A',
-    rect: { x: 650, y: 768, w: 140, h: 70 },
+    rect: { x: 650, y: 522, w: 140, h: 70 },
     specs: [
       'Autoclave for composite structure repair',
       'NDT inspection room: ultrasound, X-ray, eddy current',
@@ -286,7 +286,7 @@ const FACILITIES = [
   {
     id: 'pista', mapLabel: 'CUU Landing Runway', name: 'Runway 18L/36R',
     category: 'pista', phases: ['F3', 'F4'], area: 'Extension to 3,500 m',
-    rect: { x: 40, y: 30, w: 100, h: 935 },
+    rect: { x: 40, y: 30, w: 100, h: 1145 },
     specs: [
       'Extension of the existing runway to 3,500 m in length',
       '18L/36R orientation',
@@ -297,7 +297,7 @@ const FACILITIES = [
   {
     id: 'rodaje', mapLabel: 'Parallel Taxiway', name: 'Parallel Taxiway',
     category: 'rodaje', phases: ['F3'], area: 'N/A',
-    rect: { x: 160, y: 30, w: 50, h: 935 },
+    rect: { x: 160, y: 30, w: 50, h: 1145 },
     specs: [
       'Connects the MRO platform with the main runway',
       'ICAO Code F geometric design',

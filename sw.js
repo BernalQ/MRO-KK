@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mro-cuu-v32';
+const CACHE_NAME = 'mro-cuu-v38';
 const ASSETS = [
   './',
   './index.html',
